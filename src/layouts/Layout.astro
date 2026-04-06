@@ -5,7 +5,10 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = "Personalized 70.3 triathlon training plans built around your race, your fitness, your schedule." } = Astro.props;
+const {
+  title,
+  description = "AI-powered triathlon training plans from Sprint to Ironman. Personalized to your race, your fitness, your schedule. Free."
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -13,6 +16,12 @@ const { title, description = "Personalized 70.3 triathlon training plans built a
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://getdromos.com/assets/og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://getdromos.com" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <link rel="icon" type="image/png" href="/assets/appicon.png" />
   </head>
