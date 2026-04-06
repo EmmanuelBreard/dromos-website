@@ -1,0 +1,13 @@
+---
+const currentPath = Astro.url.pathname;
+---
+<header class="border-b border-gray-100">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <img src="/assets/logo-light.svg" alt="Dromos" class="h-7" />
+    </a>
+    <nav class="flex items-center gap-6 text-sm font-medium text-gray-600">
+      <a href="/support" class={`hover:text-gray-900 transition-colors ${currentPath === '/support' ? 'text-gray-900' : ''}`}>Support</a>
+    </nav>
+  </div>
+</header>
