@@ -1,101 +1,482 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FeatureCard from '../components/FeatureCard.astro';
-import ScreenshotMockup from '../components/ScreenshotMockup.astro';
+
+// TODO: replace with the real App Store listing URL before this goes live.
+// Single source of truth for every "Download / Get the app" CTA on the page.
+const APP_STORE_URL = "#";
 ---
-<Layout title="Dromos — Triathlon Training Plans">
-  <Header />
+<Layout title="Dromos — AI Triathlon Coach for iPhone">
+  <div class="bg-bg text-ink font-sans antialiased selection:bg-accent/30">
 
-  <!-- Hero (dark) -->
-  <section class="bg-[#111827] text-white px-6 pt-20 pb-16">
-    <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-
-      <!-- Left: copy -->
-      <div class="flex-1 text-center lg:text-left">
-        <div class="flex justify-center lg:justify-start mb-6">
-          <picture>
-            <source srcset="/assets/appicon-200.webp" type="image/webp" />
-            <img src="/assets/appicon.png" alt="Dromos" class="w-16 h-16 rounded-2xl shadow-lg" width="64" height="64" />
-          </picture>
-        </div>
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight max-w-xl mx-auto lg:mx-0">
-          You have 10 hours a week and one triathlon to get right.<br class="hidden sm:block" />
-          <span class="text-brand">Waste nothing.</span>
-        </h1>
-        <p class="mt-6 text-lg text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-          AI-powered triathlon training plans — from Sprint to Ironman.
-          Personalized to your race, your fitness, your schedule. Free.
-        </p>
-        <div class="mt-8 flex justify-center lg:justify-start">
-          <a
-            href="#"
-            class="inline-flex items-center gap-3 bg-brand hover:bg-brand-dark text-black font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-            </svg>
-            Download on the App Store
+    <!-- ============ STICKY NAV ============ -->
+    <header class="sticky top-0 z-50 frosted border-b border-hairline">
+      <nav class="mx-auto max-w-[1120px] px-6 h-16 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-2.5" aria-label="Dromos home">
+          <img src="/assets/logo-light.svg" alt="" width="26" height="26" class="h-7 w-7" />
+          <span class="font-display font-extrabold text-lg tracking-tight">Dromos</span>
+        </a>
+        <div class="flex items-center gap-3 sm:gap-5">
+          <a href="https://getdromos.com/support" class="hidden sm:inline text-sm text-muted hover:text-ink">Support</a>
+          <a href={APP_STORE_URL}
+             class="inline-flex items-center gap-2 rounded-full bg-accent/15 text-accent ring-1 ring-accent/30 px-4 py-2 text-sm font-semibold hover:bg-accent/25">
+            Get the app
           </a>
         </div>
-      </div>
+      </nav>
+    </header>
 
-      <!-- Right: screenshot -->
-      <div class="flex-shrink-0">
-        <ScreenshotMockup src="/assets/screenshot-coach.png" alt="Dromos session with Strava data and coach feedback" />
-      </div>
+    <main id="top">
 
+      <!-- ============ HERO ============ -->
+      <section class="relative overflow-hidden">
+        <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+        <div class="relative mx-auto max-w-[1120px] px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-10 items-center">
+
+          <!-- Left: copy -->
+          <div>
+            <p class="eyebrow text-accent mb-5">AI Triathlon Coach · iPhone</p>
+            <h1 class="h1 text-ink max-w-[18ch]">
+              You've got 10 hours a week and one race that matters. Don't spend them guessing.
+            </h1>
+            <p class="mt-6 text-[17px] leading-relaxed text-muted max-w-[52ch]">
+              A personalized triathlon training plan — Sprint to Ironman — built around your real
+              fitness and your real weekly hours. <span class="text-ink font-medium">Free.</span>
+            </p>
+
+            <!-- Apple badge + objection-killer -->
+            <div class="mt-9 flex flex-col items-start gap-3">
+              <a href={APP_STORE_URL}
+                 class="inline-block rounded-xl hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                 aria-label="Download Dromos on the App Store">
+                <!-- Official-style Apple "Download on the App Store" black badge -->
+                <svg width="180" height="60" viewBox="0 0 180 60" role="img" aria-label="Download on the App Store" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.5" y="0.5" width="179" height="59" rx="11" fill="#000000" stroke="#A6A6A6" stroke-width="1"/>
+                  <g fill="#FFFFFF">
+                    <!-- Apple logo -->
+                    <path d="M33.9 30.3c-.03-3.2 2.62-4.74 2.74-4.82-1.5-2.18-3.82-2.48-4.65-2.51-1.96-.2-3.85 1.16-4.85 1.16-1.02 0-2.55-1.14-4.2-1.1-2.13.03-4.12 1.25-5.22 3.17-2.25 3.9-.57 9.65 1.6 12.8 1.08 1.55 2.36 3.28 4.04 3.22 1.63-.07 2.24-1.04 4.21-1.04 1.95 0 2.52 1.04 4.23 1 1.75-.03 2.85-1.57 3.91-3.13 1.26-1.8 1.78-3.55 1.8-3.64-.04-.02-3.44-1.32-3.47-5.24zM30.72 20.9c.88-1.08 1.48-2.55 1.32-4.04-1.27.05-2.86.86-3.78 1.92-.82.94-1.54 2.46-1.35 3.89 1.43.11 2.9-.72 3.81-1.77z"/>
+                  </g>
+                  <text x="48" y="22" fill="#FFFFFF" font-family="Inter, Helvetica, Arial, sans-serif" font-size="9" font-weight="400">Download on the</text>
+                  <text x="47" y="44" fill="#FFFFFF" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="-0.4">App Store</text>
+                </svg>
+              </a>
+              <p class="text-sm text-muted">
+                Yes, actually free. <span class="text-ink">No ads, no card, no paywall mid-plan.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: framed hero screenshot -->
+          <div class="relative">
+            <div class="absolute -inset-6 shot-backdrop rounded-[3rem] blur-[2px] opacity-90"></div>
+            <div class="relative mx-auto w-[260px] sm:w-[300px] phone-frame">
+              <img src="/assets/screenshot-coach.png"
+                   alt="Dromos app showing today's coached workout with a plain-language reason for the session"
+                   class="phone-screen" width="300" height="650" loading="eager" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ TRUST STRIP ============ -->
+        <div class="relative border-y border-hairline bg-surface/40">
+          <div class="mx-auto max-w-[1120px] px-6 py-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
+            <span class="inline-flex items-center gap-2">
+              <img src="/assets/strava-compatible.svg" alt="Compatible with Strava" class="h-5" />
+            </span>
+            <span class="hidden sm:inline text-hairline">|</span>
+            <span>New on the App Store</span>
+            <span class="text-hairline">·</span>
+            <span>Sprint to Ironman</span>
+            <span class="text-hairline">·</span>
+            <span>iPhone</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROBLEM → SOLUTION ============ -->
+      <section class="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
+        <div class="max-w-[42rem] mx-auto text-center">
+          <p class="eyebrow text-accent mb-4">The difference</p>
+          <h2 class="h2 text-ink">
+            Other apps sell you a template.<br class="hidden sm:block" /> Dromos builds your plan from scratch.
+          </h2>
+          <p class="mt-6 text-[17px] leading-relaxed text-muted">
+            From your FTP, VMA, CSS, race date, and the hours you actually have — not someone else's.
+            Every block is generated for you, not pulled off a shelf.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ FEATURE ROWS ============ -->
+      <section class="mx-auto max-w-[1120px] px-6 pb-8 space-y-6">
+
+        <!-- Feature 1 -->
+        <article class="rounded-3xl bg-surface border border-hairline overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-10 items-center p-8 sm:p-12">
+            <div>
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-bg border border-hairline mb-6">
+                <!-- lucide: calendar-check -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A878" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/>
+                </svg>
+              </div>
+              <p class="eyebrow text-accent mb-3">Built around your life</p>
+              <h3 class="font-display text-2xl font-semibold leading-snug text-ink">Your body isn't the hard part. Your week is.</h3>
+              <p class="mt-4 text-[17px] leading-relaxed text-muted">
+                Weekend away. Pool closed Monday to Friday. Only mornings free. Dromos plans around the
+                week you actually have — and <span class="text-ink font-medium">swaps sessions instead of skipping them</span>,
+                so a messy week never costs you the block.
+              </p>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-0 shot-backdrop rounded-3xl"></div>
+              <div class="relative p-6 sm:p-9">
+                <svg class="il" viewBox="0 0 440 300" role="img"
+                     aria-label="A training week where a closed pool and a weekend away reshape the plan: the swim is swapped for a run and the long ride is moved to Friday.">
+                  <defs>
+                    <pattern id="hatch1" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                      <line x1="0" y1="0" x2="0" y2="7" stroke="#3A424C" stroke-width="1.5"/>
+                    </pattern>
+                  </defs>
+                  <!-- day columns -->
+                  <g class="il-dim il-mono" font-size="10" letter-spacing="1" text-anchor="middle">
+                    <text x="46" y="30">MON</text><text x="104" y="30">TUE</text><text x="162" y="30">WED</text>
+                    <text x="220" y="30">THU</text><text x="278" y="30">FRI</text><text x="336" y="30">SAT</text><text x="394" y="30">SUN</text>
+                  </g>
+                  <!-- cards -->
+                  <g fill="#1A1F27" stroke="rgba(255,255,255,0.06)">
+                    <rect x="26" y="40" width="40" height="100" rx="9"/><rect x="84" y="40" width="40" height="100" rx="9"/>
+                    <rect x="142" y="40" width="40" height="100" rx="9"/><rect x="200" y="40" width="40" height="100" rx="9"/>
+                    <rect x="258" y="40" width="40" height="100" rx="9"/><rect x="316" y="40" width="40" height="100" rx="9"/>
+                    <rect x="374" y="40" width="40" height="100" rx="9"/>
+                  </g>
+                  <!-- load bars (open days) -->
+                  <g fill="rgba(0,168,120,0.16)" stroke="#00A878" stroke-width="1.25">
+                    <rect x="33" y="106" width="26" height="34" rx="5"/>   <!-- MON run -->
+                    <rect x="91" y="94"  width="26" height="46" rx="5"/>   <!-- TUE swim -->
+                    <rect x="207" y="100" width="26" height="40" rx="5"/>  <!-- THU swapped run -->
+                    <rect x="265" y="76"  width="26" height="64" rx="5"/>  <!-- FRI long ride (moved) -->
+                  </g>
+                  <!-- blocked days: WED pool, SAT/SUN away -->
+                  <g>
+                    <rect x="146" y="48" width="32" height="84" rx="7" fill="url(#hatch1)" stroke="rgba(255,255,255,0.06)"/>
+                    <rect x="320" y="48" width="32" height="84" rx="7" fill="url(#hatch1)" stroke="rgba(255,255,255,0.06)"/>
+                    <rect x="378" y="48" width="32" height="84" rx="7" fill="url(#hatch1)" stroke="rgba(255,255,255,0.06)"/>
+                    <g stroke="#6B7683" stroke-width="2" stroke-linecap="round">
+                      <path d="M156 84 l12 12 M168 84 l-12 12"/>
+                      <path d="M330 84 l12 12 M342 84 l-12 12"/>
+                      <path d="M388 84 l12 12 M400 84 l-12 12"/>
+                    </g>
+                  </g>
+                  <!-- labels under cards -->
+                  <g font-size="10" text-anchor="middle" class="il-mono">
+                    <text x="46" y="158" class="il-muted">Run</text>
+                    <text x="104" y="158" class="il-muted">Swim</text>
+                    <text x="162" y="158" class="il-dim">Pool ✕</text>
+                    <text x="220" y="158" class="il-accent">Run ⤿</text>
+                    <text x="278" y="158" class="il-accent">Ride ⤿</text>
+                    <text x="336" y="158" class="il-dim">Away</text>
+                    <text x="394" y="158" class="il-dim">Away</text>
+                  </g>
+                  <!-- caption -->
+                  <g font-size="13">
+                    <text x="26" y="196"><tspan class="il-muted">Pool closed? </tspan><tspan class="il-accent" font-weight="600">Swapped to a threshold run.</tspan></text>
+                    <text x="26" y="220"><tspan class="il-muted">Gone all weekend? </tspan><tspan class="il-accent" font-weight="600">Long ride pulled to Friday.</tspan></text>
+                    <text x="26" y="252" class="il-dim" font-size="11.5">No template survives contact with a real calendar.</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 2 (reversed) -->
+        <article class="rounded-3xl bg-surface border border-hairline overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-10 items-center p-8 sm:p-12">
+            <div class="lg:order-2">
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-bg border border-hairline mb-6">
+                <!-- lucide: trending-up -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A878" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+                </svg>
+              </div>
+              <p class="eyebrow text-accent mb-3">Plan vs. reality</p>
+              <h3 class="font-display text-2xl font-semibold leading-snug text-ink">See where the plan went and where you actually went.</h3>
+              <p class="mt-4 text-[17px] leading-relaxed text-muted">
+                Dromos auto-matches your Strava activities to the plan, so you can see exactly where
+                you're on track — or drifting — without manually logging a thing.
+              </p>
+            </div>
+            <div class="relative lg:order-1">
+              <div class="absolute inset-0 shot-backdrop rounded-3xl"></div>
+              <div class="relative p-6 sm:p-9">
+                <svg class="il" viewBox="0 0 440 300" role="img"
+                     aria-label="A chart overlaying the planned training load as a dashed line against the actual load from Strava as a solid line, with a marked point in week 4 where the athlete drifted below plan.">
+                  <!-- legend -->
+                  <g font-size="12" class="il-mono">
+                    <line x1="26" y1="24" x2="52" y2="24" stroke="#9BA4B0" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="58" y="28" class="il-muted">Planned</text>
+                    <line x1="150" y1="24" x2="176" y2="24" stroke="#00A878" stroke-width="2.5"/>
+                    <text x="182" y="28" class="il-accent">Actual · from Strava</text>
+                  </g>
+                  <!-- axes -->
+                  <g stroke="rgba(255,255,255,0.10)" stroke-width="1">
+                    <line x1="40" y1="52" x2="40" y2="250"/>
+                    <line x1="40" y1="250" x2="416" y2="250"/>
+                  </g>
+                  <g class="il-dim il-mono" font-size="9.5" text-anchor="middle">
+                    <text x="66" y="266">W1</text><text x="136" y="266">W2</text><text x="206" y="266">W3</text>
+                    <text x="276" y="266">W4</text><text x="346" y="266">W5</text><text x="400" y="266">W6</text>
+                  </g>
+                  <text x="30" y="150" class="il-dim il-mono" font-size="9.5" text-anchor="middle" transform="rotate(-90 30 150)">LOAD</text>
+                  <!-- planned (dashed) -->
+                  <path d="M66 214 L136 192 L206 162 L276 135 L346 116 L400 150"
+                        fill="none" stroke="#9BA4B0" stroke-width="2" stroke-dasharray="5 4"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- actual (solid accent) -->
+                  <path d="M66 216 L136 194 L206 166 L276 198 L346 150 L400 152"
+                        fill="none" stroke="#00A878" stroke-width="2.75"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- drift gap at W4 -->
+                  <line x1="276" y1="135" x2="276" y2="198" stroke="#00A878" stroke-width="1.25" stroke-dasharray="2 3" opacity="0.7"/>
+                  <circle cx="276" cy="198" r="4.5" fill="#00A878" stroke="#0B0E13" stroke-width="2"/>
+                  <circle cx="276" cy="135" r="3" fill="none" stroke="#9BA4B0" stroke-width="1.5"/>
+                  <!-- callout -->
+                  <g>
+                    <text x="292" y="214" class="il-ink" font-size="12.5" font-weight="600">You drifted here</text>
+                    <text x="292" y="230" class="il-muted" font-size="11">no manual logging</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="rounded-3xl bg-surface border border-hairline overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-10 items-center p-8 sm:p-12">
+            <div>
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-bg border border-hairline mb-6">
+                <!-- lucide: compass -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A878" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                </svg>
+              </div>
+              <p class="eyebrow text-accent mb-3">Every session has a reason</p>
+              <h3 class="font-display text-2xl font-semibold leading-snug text-ink">No more junk miles you can't justify to yourself at 6am.</h3>
+              <p class="mt-4 text-[17px] leading-relaxed text-muted">
+                Every workout tells you why it's there — including <span class="text-ink font-medium">why today is easy</span>.
+                Because the session that wins your race is usually the one you were tempted to sabotage the day before.
+              </p>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-0 shot-backdrop rounded-3xl"></div>
+              <div class="relative p-6 sm:p-9">
+                <svg class="il" viewBox="0 0 440 300" role="img"
+                     aria-label="An easy Zone 2 session shown with a coaching note explaining why it is deliberately easy: to keep the legs fresh for Saturday's key brick session.">
+                  <!-- session card -->
+                  <rect x="24" y="52" width="188" height="196" rx="14" fill="#1A1F27" stroke="rgba(255,255,255,0.07)"/>
+                  <text x="42" y="82" class="il-accent il-mono" font-size="10" letter-spacing="1">TODAY · TUE</text>
+                  <text x="42" y="104" class="il-ink" font-family="Archivo, sans-serif" font-size="17" font-weight="700">Easy spin</text>
+                  <text x="42" y="124" class="il-muted" font-size="12">Zone 2 · 45 min</text>
+                  <!-- flat, low profile bars (deliberately easy) -->
+                  <g fill="rgba(0,168,120,0.16)" stroke="#00A878" stroke-width="1">
+                    <rect x="42"  y="176" width="12" height="20" rx="2"/>
+                    <rect x="58"  y="172" width="12" height="24" rx="2"/>
+                    <rect x="74"  y="178" width="12" height="18" rx="2"/>
+                    <rect x="90"  y="174" width="12" height="22" rx="2"/>
+                    <rect x="106" y="176" width="12" height="20" rx="2"/>
+                    <rect x="122" y="173" width="12" height="23" rx="2"/>
+                    <rect x="138" y="177" width="12" height="19" rx="2"/>
+                    <rect x="154" y="175" width="12" height="21" rx="2"/>
+                    <rect x="170" y="178" width="12" height="18" rx="2"/>
+                    <rect x="186" y="176" width="12" height="20" rx="2"/>
+                  </g>
+                  <line x1="42" y1="196" x2="198" y2="196" stroke="rgba(255,255,255,0.10)"/>
+                  <!-- struck-through temptation -->
+                  <text x="42" y="224" class="il-dim" font-size="11.5" text-decoration="line-through">Feeling strong — send it?</text>
+                  <!-- callout bubble -->
+                  <path d="M212 108 l14 8 l-14 8 z" fill="#12161C"/>
+                  <rect x="224" y="60" width="196" height="150" rx="14" fill="#12161C" stroke="rgba(0,168,120,0.35)"/>
+                  <rect x="224" y="60" width="4" height="150" rx="2" fill="#00A878"/>
+                  <text x="242" y="86" class="il-accent il-mono" font-size="10" letter-spacing="1">WHY SO EASY?</text>
+                  <g class="il-ink" font-size="13.5" font-weight="500">
+                    <text x="242" y="110">Saturday's brick is the</text>
+                    <text x="242" y="130">session that makes you</text>
+                    <text x="242" y="150">race-ready. Burn your</text>
+                    <text x="242" y="170">matches today and you'll</text>
+                    <text x="242" y="190">limp through the one</text>
+                    <text x="242" y="204" class="il-accent" font-weight="600">that actually counts.</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ FOUNDER / CREDIBILITY ============ -->
+      <section class="mx-auto max-w-[1120px] px-6 py-20 sm:py-28">
+        <div class="rounded-3xl bg-surface2 border border-hairline p-8 sm:p-14">
+          <div class="grid sm:grid-cols-[auto_1fr] gap-8 sm:gap-12 items-center">
+            <div class="flex flex-col items-center sm:items-start">
+              <div class="w-24 h-24 rounded-2xl bg-bg border border-hairline grid place-items-center overflow-hidden">
+                <img src="/assets/appicon.png" alt="" class="w-16 h-16 rounded-xl" />
+              </div>
+            </div>
+            <div>
+              <p class="eyebrow text-accent mb-4">Built by an athlete, not a marketing team</p>
+              <blockquote class="font-display text-xl sm:text-2xl font-semibold leading-snug text-ink">
+                "Built by one triathlete who got tired of generic plans. Every feature exists because I
+                needed it — usually at 5am, staring at a workout I didn't understand."
+              </blockquote>
+              <p class="mt-5 text-sm text-muted">
+                <span class="text-ink font-medium">Emmanuel Breard</span> · Founder, solo developer & age-grouper
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="mx-auto max-w-[1120px] px-6 pb-20 sm:pb-28">
+        <div class="max-w-[44rem] mx-auto">
+          <div class="text-center mb-10">
+            <p class="eyebrow text-accent mb-3">Before you ask</p>
+            <h2 class="h2 text-ink">The questions you'd type into App Store search</h2>
+          </div>
+
+          <div class="divide-y divide-hairline rounded-2xl bg-surface border border-hairline">
+            <!-- item -->
+            <details class="group p-6 sm:p-7" open>
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">Is it really free? What's the catch?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                Free. No ads, no credit card, no paywall halfway through your plan. It's solo-built and
+                early — the goal right now is athletes using it, not revenue.
+              </p>
+            </details>
+
+            <details class="group p-6 sm:p-7">
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">Which races does it support?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                The full triathlon range — Sprint, Olympic, 70.3 (Half), and Ironman. You give it your
+                race and date; it builds the plan back from there.
+              </p>
+            </details>
+
+            <details class="group p-6 sm:p-7">
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">Do I need Strava?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                No, but it's better with it. Connect Strava and Dromos auto-matches your activities to
+                the plan so you can see planned vs. actual without logging anything by hand.
+              </p>
+            </details>
+
+            <details class="group p-6 sm:p-7">
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">What if I don't know my FTP, VMA or CSS?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                That's fine. Dromos works with sensible estimates from your basics and sharpens the plan
+                as it learns from your real sessions. You don't need a lab test to start.
+              </p>
+            </details>
+
+            <details class="group p-6 sm:p-7">
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">Will my plan adapt if I miss sessions?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                Yes. Life happens. Dromos sees what you actually did via Strava and keeps the plan
+                pointed at your race date instead of pretending the missed week didn't exist.
+              </p>
+            </details>
+
+            <details class="group p-6 sm:p-7">
+              <summary class="flex items-center justify-between gap-4">
+                <span class="font-display text-lg font-semibold text-ink">iPhone only?</span>
+                <svg class="faq-chevron shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted">
+                For now, yes — Dromos is an iPhone app. It's a focused, native build rather than a
+                stretched-thin everything-app.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA BAND ============ -->
+      <section class="relative overflow-hidden border-t border-hairline">
+        <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+        <div class="relative mx-auto max-w-[1120px] px-6 py-20 sm:py-28 text-center">
+          <p class="eyebrow text-accent mb-4">Stop guessing</p>
+          <h2 class="h2 text-ink max-w-[20ch] mx-auto">Your next 10 hours could actually count.</h2>
+          <p class="mt-5 text-[17px] text-muted max-w-[44ch] mx-auto">
+            Build a plan around your real fitness and your real schedule — free, in a couple of minutes.
+          </p>
+          <div class="mt-9 flex flex-col items-center gap-3">
+            <a href={APP_STORE_URL}
+               class="inline-block rounded-xl hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+               aria-label="Download Dromos on the App Store">
+              <svg width="180" height="60" viewBox="0 0 180 60" role="img" aria-label="Download on the App Store" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="179" height="59" rx="11" fill="#000000" stroke="#A6A6A6" stroke-width="1"/>
+                <path fill="#FFFFFF" d="M33.9 30.3c-.03-3.2 2.62-4.74 2.74-4.82-1.5-2.18-3.82-2.48-4.65-2.51-1.96-.2-3.85 1.16-4.85 1.16-1.02 0-2.55-1.14-4.2-1.1-2.13.03-4.12 1.25-5.22 3.17-2.25 3.9-.57 9.65 1.6 12.8 1.08 1.55 2.36 3.28 4.04 3.22 1.63-.07 2.24-1.04 4.21-1.04 1.95 0 2.52 1.04 4.23 1 1.75-.03 2.85-1.57 3.91-3.13 1.26-1.8 1.78-3.55 1.8-3.64-.04-.02-3.44-1.32-3.47-5.24zM30.72 20.9c.88-1.08 1.48-2.55 1.32-4.04-1.27.05-2.86.86-3.78 1.92-.82.94-1.54 2.46-1.35 3.89 1.43.11 2.9-.72 3.81-1.77z"/>
+                <text x="48" y="22" fill="#FFFFFF" font-family="Inter, Helvetica, Arial, sans-serif" font-size="9" font-weight="400">Download on the</text>
+                <text x="47" y="44" fill="#FFFFFF" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="-0.4">App Store</text>
+              </svg>
+            </a>
+            <p class="text-sm text-muted">No ads, no card, no paywall mid-plan.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="border-t border-hairline bg-surface/40">
+      <div class="mx-auto max-w-[1120px] px-6 py-12 grid gap-8 sm:grid-cols-3 items-start">
+        <div>
+          <a href="#top" class="flex items-center gap-2.5">
+            <img src="/assets/logo-light.svg" alt="" width="24" height="24" class="h-6 w-6" />
+            <span class="font-display font-extrabold text-base">Dromos</span>
+          </a>
+          <p class="mt-3 text-sm text-muted max-w-[28ch]">AI triathlon coach for iPhone. Sprint to Ironman. Free.</p>
+        </div>
+        <nav class="text-sm" aria-label="Footer">
+          <p class="eyebrow text-muted mb-3">App</p>
+          <ul class="space-y-2">
+            <li><a href={APP_STORE_URL} class="text-muted hover:text-ink">Download on App Store</a></li>
+            <li><a href="https://getdromos.com/support" class="text-muted hover:text-ink">Support</a></li>
+            <li><a href="https://getdromos.com/privacy" class="text-muted hover:text-ink">Privacy Policy</a></li>
+          </ul>
+        </nav>
+        <div class="text-sm sm:text-right">
+          <p class="text-muted">© 2026 Emmanuel Breard.</p>
+          <p class="mt-2 text-muted/70">Made between training sessions.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============ MOBILE STICKY CTA BAR ============ -->
+    <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 frosted border-t border-hairline px-4 py-3">
+      <a href={APP_STORE_URL}
+         class="flex items-center justify-center gap-2 w-full rounded-xl bg-accent text-[#07120E] font-semibold py-3 text-[15px] hover:bg-accent-dark"
+         aria-label="Download Dromos on the App Store">
+        Get Dromos — Free
+      </a>
     </div>
-  </section>
+    <!-- spacer so sticky bar doesn't cover footer on mobile -->
+    <div class="lg:hidden h-20" aria-hidden="true"></div>
 
-  <!-- Race distances strip -->
-  <section class="bg-gray-900 text-gray-400 text-sm py-4 text-center tracking-wide">
-    From Sprint to Ironman &nbsp;·&nbsp; Swim &nbsp;·&nbsp; Bike &nbsp;·&nbsp; Run &nbsp;·&nbsp; Strava sync &nbsp;·&nbsp; Free
-  </section>
-
-  <!-- Outcome cards -->
-  <section class="bg-gray-50 py-20">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <FeatureCard
-          icon="🤖"
-          headline="Other apps sell templates. Dromos builds your plan from scratch."
-          body="From your FTP, VMA, CSS, race date, and weekly hours. Not a template. Not a generic block. Your plan."
-          screenshotSrc="/assets/screenshot-plan.png"
-          screenshotAlt="Dromos calendar view showing a personalized training week"
-          isLead={true}
-        />
-        <FeatureCard
-          icon="📊"
-          headline="See exactly how you trained vs. the plan."
-          body="Dromos auto-matches your Strava activities and shows where you're on track — or drifting."
-          screenshotSrc="/assets/screenshot-session.png"
-          screenshotAlt="Dromos home feed with session cards and intensity graphs"
-        />
-        <FeatureCard
-          icon="💡"
-          headline="Every session tells you why it's there."
-          body="Coaching notes for every workout. Know the purpose, trust the process."
-          screenshotSrc="/assets/screenshot-coach.png"
-          screenshotAlt="Dromos session detail with coaching feedback"
-        />
-      </div>
-
-      <!-- Strava badge -->
-      <div class="mt-10 flex justify-center items-center gap-4">
-        <img src="/assets/strava-compatible.svg" alt="Compatible with Strava" class="h-7" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Credibility line -->
-  <section class="py-12 text-center px-6">
-    <p class="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
-      Built by a triathlete preparing for Nîmes–Alpe d'Huez.<br />
-      Every feature exists because I needed it.
-    </p>
-  </section>
-
-  <Footer />
+  </div>
 </Layout>

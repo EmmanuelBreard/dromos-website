@@ -7,7 +7,7 @@ interface Props {
 }
 const {
   title,
-  description = "AI-powered triathlon training plans from Sprint to Ironman. Personalized to your race, your fitness, your schedule. Free."
+  description = "A personalized triathlon training plan — Sprint to Ironman — built around your real fitness and your real weekly hours. Free on the App Store."
 } = Astro.props;
 ---
 <!doctype html>
@@ -22,8 +22,14 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://getdromos.com" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/png" href="/assets/appicon.png" />
+    <!-- Google Fonts: Archivo (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-white text-gray-900 font-sans antialiased">
     <slot />

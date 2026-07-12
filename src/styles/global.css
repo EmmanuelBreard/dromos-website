@@ -4,5 +4,119 @@
   --color-brand: #00A878;
   --color-brand-dark: #008F65;
   --color-hero-bg: #111827;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-bg: #0B0E13;
+  --color-surface: #12161C;
+  --color-surface2: #1A1F27;
+  --color-hairline: rgba(255,255,255,0.08);
+  --color-ink: #F2F4F3;
+  --color-muted: #9BA4B0;
+  --color-accent: #00A878;
+  --color-accent-dark: #008F65;
+  --font-display: "Archivo", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.h1 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.h2 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Accent-tinted gradient backdrop for screenshots (never white) */
+.shot-backdrop {
+  background: radial-gradient(circle at 50% 0%, #0F2A22 0%, #0B0E13 70%);
+}
+
+/* Hero ambient glow */
+.hero-glow {
+  background:
+    radial-gradient(60% 50% at 75% 15%, rgba(0,168,120,0.16) 0%, rgba(0,168,120,0) 60%),
+    radial-gradient(50% 40% at 10% 90%, rgba(0,168,120,0.08) 0%, rgba(0,168,120,0) 60%);
+}
+
+/* CSS phone frame */
+.phone-frame {
+  position: relative;
+  border-radius: 2.5rem;
+  border: 2px solid rgba(255,255,255,0.10);
+  background: #05070A;
+  padding: 8px;
+  box-shadow: 0 24px 60px -16px rgba(0,0,0,0.65), 0 2px 6px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 22px;
+  background: #05070A;
+  border-radius: 0 0 14px 14px;
+  z-index: 3;
+}
+.phone-frame::after {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #0c1a18;
+  border-radius: 50%;
+  box-shadow: 22px 0 0 -2px #0c1410;
+  z-index: 4;
+}
+.phone-screen {
+  border-radius: 1.9rem;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  background: #0B0E13;
+}
+
+/* ---- Inline illustration primitives ---- */
+.il { width: 100%; height: auto; display: block; }
+.il text { font-family: 'Inter', system-ui, sans-serif; }
+.il-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.il-ink { fill: #F2F4F3; }
+.il-muted { fill: #9BA4B0; }
+.il-dim { fill: #6B7683; }
+.il-accent { fill: #00A878; }
+
+.frosted {
+  background: rgba(11,14,19,0.80);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+}
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-chevron { transform: rotate(180deg); }
+.faq-chevron { transition: transform 0.2s ease; }
+
+a, button { transition: all 0.18s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }
