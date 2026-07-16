@@ -1,0 +1,15 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "dromos-website",
+	"compatibility_date": "2026-04-06",
+	// Static marketing site: serve the Astro build output as Workers static assets.
+	// The @astrojs/cloudflare adapter stays configured so Cloudflare's build step
+	// detects it and skips its (failing) `astro add cloudflare` auto-setup. Every
+	// route is prerendered, so we deploy assets only (no `main` worker).
+	"assets": {
+		"directory": "./dist/client"
+	},
+	"observability": {
+		"enabled": true
+	}
+}
